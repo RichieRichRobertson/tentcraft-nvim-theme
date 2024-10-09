@@ -170,8 +170,8 @@ local hsl = lush.hsl
      Comment        { fg=grayLight.darken(30)}, -- Any comment
 
     Constant       {fg=sparks }, -- (*) Any constant
-    String         {fg=logoPrimary }, --   A string constant: "this is a string"
-     Character      {fg=cherry }, --   A character constant: 'c', '\n'
+    String         {fg=SCLightBlue }, --   A string constant: "this is a string"
+     Character      {fg=LTYellow }, --   A character constant: 'c', '\n'
     Number         {fg=TCIndigo }, --   A number constant: 234, 0xff
     Boolean        {fg=deepPurple },  --   A boolean constant: TRUE, false
      Float          {fg=sparks }, --   A floating point constant: 2.3e10
@@ -199,7 +199,7 @@ local hsl = lush.hsl
     Typedef        { fg = sparks }, -- A typedef.
 
     Special        { fg = TCWhite }, -- Any special symbol.
-    SpecialChar    { fg = cherry }, -- Special character in a constant.
+    SpecialChar    { fg = SCLightBlue }, -- Special character in a constant.
     Tag            { fg = link.lighten(30) }, -- You can use CTRL-] on this.
     Delimiter      { fg = grayLight }, -- Character that needs attention.
     SpecialComment { fg = grayLight }, -- Special things inside a comment.
