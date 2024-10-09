@@ -29,16 +29,6 @@
 --
 --       not,
 --
---       "super_theme/lua/dark.lua".
---
---       With that caveat out of the way...
---
-
--- Enable lush.ify on this file, run:
---
---  `:Lushify`
---
---  or
 --
 --  `:lua require('lush').ify()`
 
@@ -53,8 +43,8 @@ local hsl = lush.hsl
 
   local primary = hsl("#002e46")
   local LTdarkblue = hsl("#112D45")
-  local TCBlack = hsl("#2F2F2F")
-  local font = hsl("#474e52")
+  local TCBlack = hsl("#2F2F2F").lighten(20)
+  local font = hsl("#474e52").lighten(20)
   local secondary = hsl("#7c8a98")
   local grayLight = hsl("#c7cfda")
   local TCWhite = hsl("#FDFDFD")
@@ -67,19 +57,19 @@ local hsl = lush.hsl
   local logoPrimary = hsl("#4B979E")
   local TCCyan = hsl("#6CB2EB")
   local dwarf = hsl("#302984")
-  local deepPurple = hsl("#3E2F65")
+  local deepPurple = hsl("#3E2F65").lighten(20)
   local TCIndigo = hsl("#6574CD")
   local TCPurple = hsl("#7C3996")
-  local cherry = hsl("#6a0032")
+  local cherry = hsl("#6a0032").lighten(10)
   local LTPurple = hsl("#601031")
   local danger = hsl("#d00a54")
-  local success = hsl("#00a04a")
+  local success = hsl("#00a04a").lighten(10)
   local TCLime = hsl("#C6CF21")
-  local SCLink = hsl("#DC4633")
+  local SCLink = hsl("#DC4633").darken(10)
   local logoSecondary = hsl("#E4863B")
   local sparks = hsl("#e9a837")
   local LTYellow = hsl("#D4AC4C")
-  local cta = hsl("#f15b43")
+  local cta = hsl("#f15b43").darken(10)
   local LTCta = hsl("#DF6346")
   local honey = hsl("#f57e25")
   local SentryCta = hsl("#E07907")
@@ -102,16 +92,16 @@ local hsl = lush.hsl
     Conceal        {fg= grayLight }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
     Cursor         {bg=sparks }, -- Character under the cursor
     CurSearch      {bg=honey}, -- Highlighting a search pattern under the cursor (see 'hlsearch')
-    lCursor        {fg=font }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
-     CursorIM       {bg=font}, -- Like Cursor, but used when in IME mode |CursorIM|
+    lCursor        {fg=grayLight }, -- Character under the cursor when |language-mapping| is used (see 'guicursor')
+     CursorIM       {bg=grayLight}, -- Like Cursor, but used when in IME mode |CursorIM|
     CursorColumn   {bg=LTdarkblue }, -- Screen-column at the cursor, when 'cursorcolumn' is set.
-    CursorLine     { bg = TCBlack}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
+    CursorLine     {bg=TCBlack}, -- Screen-line at the cursor, when 'cursorline' is set. Low-priority if foreground (ctermfg OR guifg) is not set.
     Directory      {fg=sparks }, -- Directory names (and other special names in listings)
      DiffAdd        {fg=success }, -- Diff mode: Added line |diff.txt|
-     DiffChange     {fg=font }, -- Diff mode: Changed line |diff.txt|
+     DiffChange     {fg=grayLight }, -- Diff mode: Changed line |diff.txt|
      DiffDelete     { fg=cherry }, -- Diff mode: Deleted line |diff.txt|
-    DiffText       { fg=font, bg=LTdarkblue.lighten(20) }, -- Diff mode: Changed text within a changed line |diff.txt|
-    EndOfBuffer    {fg=LTdarkblue.darken(30) }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
+    DiffText       { fg=secondary, bg=LTdarkblue.lighten(20) }, -- Diff mode: Changed text within a changed line |diff.txt|
+    EndOfBuffer    {fg=secondary }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
     TermCursor     {bg=font, fg=TCWhite }, -- Cursor in a focused terminal
     TermCursorNC   {bg=secondary, fg=LTWhite }, -- Cursor in an unfocused terminal
     ErrorMsg       {fg=danger }, --Error messages on the command line
@@ -124,23 +114,23 @@ local hsl = lush.hsl
      LineNr         {fg=TCIndigo }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
      LineNrAbove    {fg=TCIndigo.lighten(10) }, -- Line number for when the 'relativenumber' option is set, above the cursor line
      LineNrBelow    {fg=TCIndigo.lighten(10) }, -- Line number for when the 'relativenumber' option is set, below the cursor line
-     CursorLineNr   {fg=deepPurple, gui="bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
+     CursorLineNr   {fg=TCIndigo.lighten(20), gui="bold" }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
      CursorLineFold {bg=LTdarkblue.lighten(10),fg=TCWhite }, -- Like FoldColumn when 'cursorline' is set for the cursor line
     CursorLineSign { bg=LTdarkblue.lighten(10),fg=secondary }, -- Like SignColumn when 'cursorline' is set for the cursor line
-     MatchParen     { bg=LTYellow }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
+     MatchParen     { bg=secondary }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
      ModeMsg        {fg=SCYellow }, -- 'showmode' message (e.g., "-- INSERT -- ")
      MsgArea        {fg=logoSecondary, bg=TCBlack }, -- Area for messages and cmdline
      MsgSeparator   {fg=SCLink, bg=TCBlack }, -- Separator for scrolled messages, `msgsep` flag of 'display'
      MoreMsg        {fg=success }, -- |more-prompt|
-    NonText        {fg=TCIndigo.darken(30) }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
+    NonText        {fg=TCIndigo.lighten(20) }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
      Normal         { bg = primary, fg = grayLight }, -- Normal text
      NormalFloat    { fg=grayLight, bg=LTdarkblue}, -- Normal text in floating windows.
      FloatBorder    {fg=grayLight.darken(30), bg=primary  }, -- Border of floating windows.
      FloatTitle     { fg=grayLight.lighten(20), bg=LTdarkblue}, -- Title of floating windows.
-     NormalNC       { fg=font, bg=LTdarkblue.lighten(10)}, -- normal text in non-current windows
-     Pmenu          { fg=font, bg=LTdarkblue }, -- Popup menu: Normal item.
+     NormalNC       { fg=grayLight, bg=LTdarkblue.lighten(10)}, -- normal text in non-current windows
+     Pmenu          { fg=grayLight, bg=LTdarkblue }, -- Popup menu: Normal item.
      PmenuSel       {fg=TCWhite, bg=Sentry }, -- Popup menu: Selected item.
-     PmenuKind      {fg=font, bg=LTdarkblue.darken(10) }, -- Popup menu: Normal item "kind"
+     PmenuKind      {fg=grayLight, bg=LTdarkblue.darken(10) }, -- Popup menu: Normal item "kind"
      PmenuKindSel   {fg=TCWhite, bg=Sentry.darken(10) }, -- Popup menu: Selected item "kind"
      PmenuExtra     { fg=grayLight, bg=LTdarkblue.lighten(10)}, -- Popup menu: Normal item "extra text"
      PmenuExtraSel  { fg=grayLight, bg=link.lighten(10)}, -- Popup menu: Selected item "extra text"
@@ -149,13 +139,13 @@ local hsl = lush.hsl
      Question       { fg=success}, -- |hit-enter| prompt and yes/no questions
      QuickFixLine   { bg=LTdarkblue.lighten(10), fg=success}, -- Current |quickfix| item in the quickfix window. Combined with |hl-CursorLine| when the cursor is there.
      Search         { fg = LTWhite, bg = link.darken(10) }, -- Last search pattern highlighting (see 'hlsearch'). Also used for similar items that need to stand out.
-    SpecialKey     { fg=Sentry, bg=LTdarkblue }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
+    SpecialKey     { fg=Sentry, bg=LTsecondary.lighten(20) }, -- Unprintable characters: text displayed differently from what it really is. But not 'listchars' whitespace. |hl-Whitespace|
     SpellBad       {fg=danger, gui="underline" }, -- Word that is not recognized by the spellchecker. |spell| Combined with the highlighting used otherwise.
     SpellCap       { fg=sparks, gui="underline"}, -- Word that should start with a capital. |spell| Combined with the highlighting used otherwise.
     SpellLocal     { fg=success, gui="underline"}, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
     SpellRare      {fg=cherry, gui="underline" }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
-     StatusLine     { bg=grayLight.darken(30), fg=font}, -- Status line of current window
-    StatusLineNC   { bg=grayLight.darken(20), fg=secondary }, -- Status liines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+     StatusLine     { bg=grayLight.lighten(20), fg=font.darken(10)}, -- Status line of current window
+    StatusLineNC   { bg=grayLight, fg=secondary }, -- Status liines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
      TabLine        { fg=TCCyan, bg=primary }, -- Tab pages line, not active tab page label
      TabLineFill    {bg=primary }, -- Tab pages line, where there are no labels
      TabLineSel     { fg=grayLight, bg=success }, -- Tab pages line, active tab page label
@@ -177,7 +167,7 @@ local hsl = lush.hsl
     --
     -- Uncomment and edit if you want more specific syntax highlighting.
 
-     Comment        { fg=font.darken(10) }, -- Any comment
+     Comment        { fg=grayLight.darken(30)}, -- Any comment
 
     Constant       {fg=sparks }, -- (*) Any constant
     String         {fg=logoPrimary }, --   A string constant: "this is a string"
